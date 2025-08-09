@@ -1,0 +1,70 @@
+name: draw
+description: "A Flutter web app for designing floor plans with drag and drop functionality."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Core UI and Icons
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.10+1
+
+  # State Management (choose one, Provider is simpler to start)
+  provider: ^6.1.2
+  # Alternative: riverpod: ^2.5.1
+
+  # Drawing and Canvas
+  perfect_freehand: ^2.3.0 # For smooth drawing
+  touchable: ^1.0.2 # For interactive canvas elements
+
+  # Drag and Drop
+  flutter_draggable_gridview: ^0.0.7
+  drag_and_drop_lists: ^0.3.3
+
+  # Export and Save functionality
+  screenshot: ^3.0.0 # Capture canvas as image
+  pdf: ^3.11.1 # Export as PDF
+  printing: ^5.13.4 # Print support
+  path_provider: ^2.1.5 # File system access
+
+  # File picker for web
+  file_picker: ^8.1.6
+
+  # Persistence and Data
+  shared_preferences: ^2.3.3 # Local storage
+  json_annotation: ^4.9.0 # JSON serialization
+
+  # Utilities
+  uuid: ^4.5.1 # Generate unique IDs for components
+  collection: ^1.18.0 # Advanced collections
+  vector_math: ^2.1.4 # For transformations and rotations
+
+  # Optional: For more advanced features
+  flutter_colorpicker: ^1.1.0 # Color selection
+  dropdown_button2: ^2.3.9 # Better dropdowns
+  flutter_speed_dial: ^7.0.0 # Floating action button menu
+
+  # For measurements and rulers
+  syncfusion_flutter_core: ^27.2.4
+
+  # For better web support
+  web: ^1.1.0
+  pointer_interceptor: ^0.10.1+2 # Fixes web pointer issues
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.13 # For code generation
+  json_serializable: ^6.8.0 # JSON code generation
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
