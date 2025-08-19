@@ -1,210 +1,254 @@
-Floor Plan Designer
-Floor Plan Designer is a Flutter-based application that allows users to create and edit 2D floor plans interactively. Users can add components (e.g., doors, windows, electrical fixtures), text labels, and customize room dimensions, with features like drag-and-drop, zooming, rotation, and exporting designs as JSON or PNG files.
-Table of Contents
+# Floor Plan Designer
 
-Features
-Prerequisites
-Setup Instructions
-Running the Application
-Project Structure
-Usage
-Dependencies
-Assets
-Troubleshooting
-License
+A Flutter-based interactive application for creating and editing 2D floor plans. Design professional floor plans with drag-and-drop components, customizable dimensions, and export capabilities.
 
-Features
+## 🎯 Features
 
-Interactive Floor Plan Creation: Drag and drop components like doors, windows, and fixtures onto a scalable canvas.
-Room Customization: Adjust room dimensions and zoom levels.
-Component Manipulation: Resize, rotate, duplicate, or delete components.
-Text Labels: Add and customize text labels with adjustable font size and color.
-Grid and Dimensions: Toggle grid visibility and dimension labels for precise design.
-Export Options: Save floor plans as JSON files or export as PNG images.
-State Management: Uses the Provider package for efficient state handling.
-Responsive UI: Modern, clean interface with a properties panel and toolbar.
+- **Interactive Design**: Drag and drop components like doors, windows, and electrical fixtures onto a scalable canvas
+- **Room Customization**: Adjust room dimensions with real-time updates
+- **Component Management**: Resize, rotate, duplicate, or delete components with ease
+- **Text Annotations**: Add customizable text labels with adjustable font size and color
+- **Precision Tools**: Toggle grid visibility and dimension labels for accurate measurements
+- **Export Options**: Save designs as JSON files or export as high-quality PNG images
+- **Modern UI**: Clean, responsive interface with organized toolbar and properties panel
+- **State Management**: Efficient state handling using the Provider package
 
-Prerequisites
-To set up and run the Floor Plan Designer, ensure you have the following installed:
+## 📋 Prerequisites
 
-Flutter SDK: Version 2.18.0 or higher (tested with Flutter 3.x).
-Dart: Included with Flutter (version compatible with SDK).
-Development Environment: 
-IDE (e.g., Visual Studio Code, Android Studio) with Flutter and Dart plugins.
-Command-line interface for running Flutter commands.
+Before setting up the Floor Plan Designer, ensure you have:
 
+- **Flutter SDK**: Version 3.0.0 or higher
+- **Dart**: Latest stable version (included with Flutter)
+- **Development Environment**: 
+  - IDE with Flutter/Dart plugins (VS Code, Android Studio, or IntelliJ)
+  - Command-line tools for Flutter development
+- **Git**: For repository management (optional)
+- **Web Browser**: Chrome, Firefox, or Edge for web deployment
+- **Required Assets**: Component images and Inter font (see Assets section)
 
-Git: For cloning the repository (optional).
-Web Browser: For running the web version (e.g., Chrome, Firefox).
-Assets: Image files and font file (Inter) as specified in the project.
+## 🚀 Quick Start
 
-Setup Instructions
+### 1. Clone the Repository
 
-Clone or Download the Project
-
-If using Git, clone the repository:git clone <https://github.com/asifshaiks/homeDraw.git>
+```bash
+git clone https://github.com/asifshaiks/homeDraw.git
 cd floor_plan_designer
+```
 
+### 2. Install Dependencies
 
-Alternatively, download and extract the project zip file provided.
+```bash
+flutter pub get
+```
 
+### 3. Verify Setup
 
-Install Dependencies
+```bash
+flutter doctor
+```
 
-Navigate to the project root (floor_plan_designer/) and run:flutter pub get
+Resolve any issues reported before proceeding.
 
+### 4. Run the Application
 
-This installs all dependencies listed in pubspec.yaml.
+**For Web (Recommended):**
+```bash
+flutter run -d chrome
+```
 
+**For Mobile/Desktop:**
+```bash
+flutter run
+```
 
-Add Assets
+## 📁 Project Structure
 
-Ensure the assets/images/ folder contains the following image files:
-breaker_box.png
-dd_9lite.png
-door_lh.png
-door_rh.png
-flower_box.png
-lh_9lite.png
-light.png
-loft.png
-receptacle.png
-rh_9lite.png
-rud.png
-switch.png
-w_shutters.png
-window_with_shutter.png
-window.png
-work_bench.png
-
-
-Place the Inter-Regular.ttf font file in assets/fonts/.
-Verify that pubspec.yaml includes these assets under the flutter.assets and flutter.fonts sections.
-
-
-Verify Flutter Setup
-
-Run the following to ensure Flutter is configured correctly:flutter doctor
-
-
-Resolve any issues reported by flutter doctor (e.g., missing tools or SDKs).
-
-
-
-Running the Application
-
-Run on Web
-
-To run the app in a web browser (recommended for this project due to dart:html usage):flutter run -d chrome
-
-
-The app will open in Google Chrome (or another specified browser).
-
-
-Run on Emulator/Simulator
-
-For Android/iOS:
-Ensure an emulator or physical device is connected.
-Run:flutter run
-
-
-Note: Some features (e.g., JSON file operations) rely on dart:html, which is web-specific. Test thoroughly on non-web platforms.
-
-
-
-
-Build for Production
-
-For a web build:flutter build web
-
-
-The output is in the build/web/ directory, which can be hosted on a web server.
-
-
-For Android/iOS builds, refer to Flutter's official documentation for platform-specific instructions.
-
-
-
-Project Structure
-The project follows a modular structure for maintainability:
+```
 floor_plan_designer/
 ├── lib/
-│   ├── main.dart                   # App entry point and image names
+│   ├── main.dart                           # Application entry point
 │   ├── models/
-│   │   └── placed_component.dart   # Data model for components
+│   │   └── placed_component.dart           # Component data models
 │   ├── providers/
-│   │   └── floor_plan_provider.dart # State management
+│   │   └── floor_plan_provider.dart        # State management
 │   ├── screens/
-│   │   └── floor_plan_designer.dart # Main screen
-│   ├── widgets/
-│   │   ├── canvas_area.dart         # Canvas for drawing floor plan
-│   │   ├── component_properties_panel.dart # Properties editing panel
-│   │   ├── component_toolbar.dart   # Toolbar for component selection
-│   │   └── floor_plan_painter.dart  # Custom painters for canvas and components
+│   │   └── floor_plan_designer.dart        # Main application screen
+│   └── widgets/
+│       ├── canvas_area.dart                # Interactive drawing canvas
+│       ├── component_properties_panel.dart # Component editing panel
+│       ├── component_toolbar.dart          # Component selection toolbar
+│       └── floor_plan_painter.dart         # Custom canvas painters
 ├── assets/
-│   ├── images/                     # Component image assets
-│   ├── fonts/                      # Inter font file
-├── pubspec.yaml                    # Dependencies and asset declarations
+│   ├── images/                            # Component image assets
+│   └── fonts/                             # Typography assets
+└── pubspec.yaml                           # Project configuration
+```
 
-Usage
+## 🎨 Required Assets
 
-Launch the App
+### Component Images
+Place the following PNG files in `assets/images/`:
 
-Open the app in a browser or emulator.
-The interface consists of:
-Left Panel: Component properties and actions.
-Main Canvas: Interactive area for placing and editing components.
-Top Toolbar: Room dimensions, zoom controls, and text input.
-Bottom Toolbar: Draggable component icons.
+- `breaker_box.png` - Electrical breaker box
+- `dd_9lite.png` - Double door with 9 lite glass
+- `door_lh.png` / `door_rh.png` - Left/right hinged doors
+- `flower_box.png` - Decorative flower box
+- `lh_9lite.png` / `rh_9lite.png` - Left/right 9 lite windows
+- `light.png` - Light fixture
+- `loft.png` - Loft access
+- `receptacle.png` - Electrical outlet
+- `rud.png` - Rough utility door
+- `switch.png` - Light switch
+- `w_shutters.png` - Window with shutters
+- `window_with_shutter.png` - Alternative shutter window
+- `window.png` - Standard window
+- `work_bench.png` - Work bench
 
+### Typography
+- `Inter-Regular.ttf` - Place in `assets/fonts/`
 
+Ensure all assets are declared in `pubspec.yaml` under the appropriate sections.
 
+## 🖥️ Usage Guide
 
-Designing a Floor Plan
+### Getting Started
+1. **Launch the Application**: Open in your preferred environment
+2. **Interface Overview**:
+   - **Left Panel**: Component properties and editing controls
+   - **Main Canvas**: Interactive design area
+   - **Top Toolbar**: Room dimensions, zoom, and text tools
+   - **Bottom Toolbar**: Draggable component library
 
-Set Room Dimensions: Use the "Width" and "Length" inputs in the top toolbar.
-Add Components: Drag components from the bottom toolbar onto the canvas.
-Add Text: Enter text in the top toolbar's text field and click "Add Text".
-Edit Components: Select a component to modify its size, position, rotation, or text properties in the left panel.
-Zoom and View Options: Adjust zoom with +/- buttons or reset to 100%. Toggle grid and dimensions in the left panel.
-Save/Load: Use "Save as JSON" to export the floor plan or "Load JSON" to import a saved plan.
-Export: Click "Export as PNG" to download the floor plan as an image.
+### Creating Your Floor Plan
 
+#### Basic Setup
+- Set room dimensions using the Width/Length inputs in the top toolbar
+- Use zoom controls (+/-) to adjust your view or reset to 100%
 
-Key Features
+#### Adding Components
+- Drag any component from the bottom toolbar onto the canvas
+- Components automatically snap to grid points for precision
+- Select components to access editing options in the left panel
 
-Drag components to position them freely.
-Rotate or duplicate components via the properties panel.
-Save designs as JSON for later editing.
-Export high-quality PNG images for sharing or printing.
+#### Text Annotations
+- Enter text in the top toolbar input field
+- Click "Add Text" to place labels on your floor plan
+- Customize text properties through the properties panel
 
+#### Component Editing
+- **Position**: Drag components to move them
+- **Resize**: Use handles or input precise dimensions
+- **Rotate**: Adjust orientation in 90-degree increments
+- **Duplicate**: Create copies of existing components
+- **Delete**: Remove unwanted elements
 
+#### Precision Tools
+- Toggle grid visibility for alignment assistance
+- Enable dimension labels for measurement display
+- Use snap-to-grid for precise component placement
 
-Dependencies
-The project uses the following packages (defined in pubspec.yaml):
+### Saving and Sharing
 
-flutter: Core Flutter SDK.
-provider: ^6.0.0 - For state management.
-uuid: ^3.0.0 - For generating unique component IDs.
-screenshot: ^1.2.0 - For capturing canvas as PNG.
+#### Save Project
+- Click "Save as JSON" to export your floor plan
+- JSON files preserve all component data and can be reloaded
 
-To update dependencies, run:
+#### Load Project
+- Use "Load JSON" to import previously saved designs
+- Supports full restoration of component positions and properties
+
+#### Export Image
+- Click "Export as PNG" to generate high-quality images
+- Perfect for presentations, documentation, or printing
+
+## 📦 Dependencies
+
+| Package | Version | Purpose |
+|---------|---------|---------|
+| flutter | SDK | Core Flutter framework |
+| provider | ^6.0.0 | State management |
+| uuid | ^3.0.0 | Unique component identification |
+| screenshot | ^1.2.0 | PNG export functionality |
+
+Update dependencies with:
+```bash
 flutter pub upgrade
+```
 
-Assets
+## 🔧 Build and Deployment
 
-Images: 16 PNG files in assets/images/ for components (e.g., breaker_box.png, door_lh.png).
-Font: Inter-Regular.ttf in assets/fonts/ for consistent typography.
-Ensure all assets are correctly placed and referenced in pubspec.yaml.
+### Development Build
+```bash
+flutter run
+```
 
-Troubleshooting
+### Production Web Build
+```bash
+flutter build web
+```
+Output: `build/web/` directory
 
-Missing Assets: If components fail to load, verify that all images are in assets/images/ and listed in pubspec.yaml.
-Font Issues: Ensure Inter-Regular.ttf is in assets/fonts/ and declared in pubspec.yaml.
-Web-Specific Features: File operations (save/load JSON, export PNG) use dart:html. For mobile/desktop, additional plugins may be needed.
-Build Errors: Run flutter clean and flutter pub get to resolve dependency issues.
-Performance: For large floor plans, reduce the number of components or optimize image sizes.
-Errors Loading JSON: Ensure JSON files match the expected format (see FloorPlanProvider.toJson).
+### Mobile/Desktop Builds
+Refer to [Flutter's deployment documentation](https://docs.flutter.dev/deployment) for platform-specific instructions.
 
-For further assistance, consult the Flutter documentation or contact the development team.
-or message me in the chats in slack .
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Missing Component Images**
+- Verify all PNG files are in `assets/images/`
+- Check `pubspec.yaml` asset declarations
+- Run `flutter pub get` after adding assets
+
+**Font Display Issues**
+- Ensure `Inter-Regular.ttf` is in `assets/fonts/`
+- Verify font declaration in `pubspec.yaml`
+- Clear cache with `flutter clean`
+
+**File Operations Not Working**
+- File save/load features require web environment
+- Use `dart:html` compatible browsers
+- For mobile deployment, consider alternative file handling
+
+**Performance Issues**
+- Reduce component count for complex designs
+- Optimize image asset sizes
+- Consider implementing component virtualization
+
+**Build Errors**
+```bash
+flutter clean
+flutter pub get
+flutter run
+```
+
+**JSON Import Errors**
+- Verify JSON format matches expected schema
+- Check for corrupted or incomplete files
+- Ensure proper component ID formatting
+
+## 🤝 Contributing
+
+We welcome contributions! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+For questions or support, reach out via Slack chat.
+
+## 📄 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## 🔗 Resources
+
+- [Flutter Documentation](https://docs.flutter.dev/)
+- [Provider Package](https://pub.dev/packages/provider)
+- [Flutter Web Deployment](https://docs.flutter.dev/deployment/web)
+
+---
+
+**Made with ❤️ using Flutter**
