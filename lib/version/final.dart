@@ -296,7 +296,11 @@
 //       backgroundColor: const Color(0xFFF5F5F5),
 //       body: Row(
 //         children: [
-//           ComponentPropertiesPanel(screenshotController: screenshotController),
+//           ComponentPropertiesPanel(
+//             screenshotController: screenshotController,
+//             widthCtrl: widthCtrl,
+//             heightCtrl: heightCtrl,
+//           ),
 //           Expanded(
 //             child: Column(
 //               children: [
@@ -321,7 +325,7 @@
 //                           ),
 //                           const SizedBox(width: 20),
 //                           _dimInput(
-//                             'Height',
+//                             'Length',
 //                             heightCtrl,
 //                             (h) => p.updateRoomDimensions(p.roomWidth, h),
 //                           ),
@@ -523,9 +527,14 @@
 
 // class ComponentPropertiesPanel extends StatelessWidget {
 //   final ScreenshotController screenshotController;
+//   final TextEditingController widthCtrl;
+//   final TextEditingController heightCtrl;
+
 //   const ComponentPropertiesPanel({
 //     super.key,
 //     required this.screenshotController,
+//     required this.widthCtrl,
+//     required this.heightCtrl,
 //   });
 
 //   Widget _modernButton({
@@ -741,6 +750,8 @@
 //             final content = reader.result as String;
 //             final jsonData = jsonDecode(content) as Map<String, dynamic>;
 //             p.loadFromJson(jsonData);
+//             widthCtrl.text = p.roomWidth.toString();
+//             heightCtrl.text = p.roomHeight.toString();
 //             ScaffoldMessenger.of(context).showSnackBar(
 //               SnackBar(
 //                 content: const Text('Floor plan loaded from file!'),
@@ -1277,8 +1288,8 @@
 //                                     border:
 //                                         p.selectedComponent?.id == c.id
 //                                             ? Border.all(
-//                                               color: const Color(0xFF2C2C2C),
-//                                               width: 2,
+//                                               color: const Color(0xFFD3D3D3),
+//                                               width: 1,
 //                                             )
 //                                             : null,
 //                                     borderRadius: BorderRadius.circular(2),
@@ -1302,7 +1313,7 @@
 //                     ),
 //                   ),
 //                 ),
-//             onWillAccept: (data) => true, // Allow drop acceptance
+//             onWillAccept: (data) => true,
 //             onAcceptWithDetails: (details) {
 //               final box = context.findRenderObject() as RenderBox?;
 //               if (box == null) return;
@@ -1356,8 +1367,8 @@
 //         canvas.drawRect(
 //           Rect.fromLTWH(0, 0, s.width, s.height),
 //           Paint()
-//             ..color = const Color(0xFF2C2C2C)
-//             ..strokeWidth = 2
+//             ..color = const Color(0xFFD3D3D3)
+//             ..strokeWidth = 1
 //             ..style = PaintingStyle.stroke,
 //         );
 //       }
@@ -1377,8 +1388,8 @@
 //             canvas.drawRect(
 //               Rect.fromLTWH(0, 0, s.width, s.height),
 //               Paint()
-//                 ..color = const Color(0xFF2C2C2C)
-//                 ..strokeWidth = 2
+//                 ..color = const Color(0xFFD3D3D3)
+//                 ..strokeWidth = 1
 //                 ..style = PaintingStyle.stroke,
 //             );
 //           }
@@ -1735,6 +1746,7 @@
 //     if (text != null) 'text': text,
 //     if (fontSize != null) 'fontSize': fontSize,
 //     if (color != null) 'color': color?.value,
+//     'frame': {'width': width, 'height': height},
 //   };
 
 //   static PlacedComponent fromJson(
@@ -1753,8 +1765,16 @@
 //               (j['position']['x'] as num).toDouble() * scale,
 //               (j['position']['y'] as num).toDouble() * scale,
 //             ),
-//     width: (j['width'] as num).toDouble(),
-//     height: (j['height'] as num).toDouble(),
+//     width:
+//         (j['frame'] != null
+//             ? (j['frame']['width'] as num).toDouble()
+//             : (j['width'] as num).toDouble()) ??
+//         20.0,
+//     height:
+//         (j['frame'] != null
+//             ? (j['frame']['height'] as num).toDouble()
+//             : (j['height'] as num).toDouble()) ??
+//         15.0,
 //     rotation: (j['rotation'] as num).toDouble(),
 //     imageName: j['imageName'] as String?,
 //     text: j['text'] as String?,
